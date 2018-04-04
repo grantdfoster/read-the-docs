@@ -29,8 +29,9 @@
 ### Implementation
 #### Setup
 ```javascript
-// import lodash and create bucket for results
+// import fuse, lodash, and create bucket for results
 var _ = require('lodash');
+var Fuse = require('fuse.js');
 var results = [];
 var search = 'some search query';
 
