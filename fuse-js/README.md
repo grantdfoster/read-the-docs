@@ -40,4 +40,4 @@ searchArray.forEach((substring) => { // search each word
 })
 ```
 
-[back](../)
+[back](..)
