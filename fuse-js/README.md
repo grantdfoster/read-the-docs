@@ -6,16 +6,19 @@
 * [lodash](https://lodash.com/docs/4.17.5)
 
 ### Settings
-*I wrapped a few default fuse js settings with new values that help me control results.  In this case, **options** holds the default fuse js settings*
+* options are standard fuse js properties
+* **minWordLength**: *the minimum word length used to search*
+* **whiteList**: *a string of whitelisted words that are below minWordLength but still desired for search*
+* **minScoreRequired**: *similar to options.threshold setting*
 ```json
 {
   "minScoreRequired" : 0.4,
-  "minSubstringLength" : 4,
+  "minWordLength" : 4,
   "whiteList" : "360 bim vue dwg cad git tag",
   "options" : {
     "caseSensitive" : false,
     "includeScore" : true,
-    "keys" : [ "question", "fileName" ],
+    "keys" : [ "name", "tags" ],
     "shouldSort" : true,
     "threshold" : 1,
     "tokenize" : true
@@ -24,20 +27,31 @@
 ```
 
 ### Implementation
+#### Setup
 ```javascript
-var results = [] // bucket to collect results
-let searchArray = this.localSearch.split(' ') // splits a search query into seperate words
-searchArray = _.filter(searchArray, (word) => { return word.length >= settings.minSubstringLength || settings.whiteList.includes(word) }) // filter search array down to desired words to search
-var itemsToSearch = [] // a list of objects to search.  keys you want to search should be defined in settings.keys
-var f = new Fuse(itemsToSearch, settings) // begin search
-searchArray.forEach((substring) => { // search each word
-  var result = f.search(substring) // run fuse js search algo
-  result.forEach((record) => { // for each record returned
-    if (record.score < settings.minScoreRequired) { // if it passes
-      results.push(record.item) // add to results
+// import lodash and create bucket for results
+var _ = require('lodash');
+var results = [];
+var search = 'some search query';
+// filter search down to words specified by settings, return array of words to search with
+var searchArray = search.split(' ');
+var wordsToSearchWith = _.filter(wordsToSearchWith, (word) => { return word.length >= settings.minWordLength || settings.whiteList.includes(word) }); 
+```
+#### Search
+```javascript
+var itemsToSearch = [{name: 'some name', tags: 'new'}, {name: 'other name', tags: 'old'}];
+// create new fuse js constructor
+var f = new Fuse(itemsToSearch, settings);
+// search items with each search word
+wordsToSearchWith.forEach((word) => {
+  var result = f.search(word);
+  // iterate through records returned by fuse js
+  result.forEach((record) => {
+    if (record.score < settings.minScoreRequired) {
+      results.push(record.item);
     }
   })
 })
 ```
 
-[back](.)
+[back](..)
