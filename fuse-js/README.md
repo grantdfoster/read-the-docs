@@ -6,7 +6,7 @@
 * [lodash](https://lodash.com/docs/4.17.5)
 
 ### Settings
-* options are standard fuse js properties
+* **options** are standard fuse js properties
 * **minWordLength**: *the minimum word length used to search*
 * **whiteList**: *a string of whitelisted words that are below minWordLength but still desired for search*
 * **minScoreRequired**: *similar to options.threshold setting*
@@ -33,25 +33,31 @@
 var _ = require('lodash');
 var results = [];
 var search = 'some search query';
+
 // filter search down to words specified by settings, return array of words to search with
 var searchArray = search.split(' ');
 var wordsToSearchWith = _.filter(wordsToSearchWith, (word) => { return word.length >= settings.minWordLength || settings.whiteList.includes(word) }); 
 ```
 #### Search
 ```javascript
+// define items to search as array of objects
 var itemsToSearch = [{name: 'some name', tags: 'new'}, {name: 'other name', tags: 'old'}];
+
 // create new fuse js constructor
 var f = new Fuse(itemsToSearch, settings);
+
 // search items with each search word
 wordsToSearchWith.forEach((word) => {
   var result = f.search(word);
-  // iterate through records returned by fuse js
   result.forEach((record) => {
     if (record.score < settings.minScoreRequired) {
       results.push(record.item);
     }
-  })
-})
+  });
+});
+
+// log search results
+console.log(results);
 ```
 
 [back](..)
