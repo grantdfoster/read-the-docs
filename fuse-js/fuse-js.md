@@ -61,4 +61,4 @@ wordsToSearchWith.forEach((word) => {
 console.log(results);
 ```
 
-[back](..)
+[back](README.md)
