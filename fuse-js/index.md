@@ -6,7 +6,7 @@
 * [lodash](https://lodash.com/docs/4.17.5)
 
 ### Settings
-* **options** are standard fuse js properties
+* **options**: *are standard fuse js properties*
 * **minWordLength**: *the minimum word length used to search*
 * **whiteList**: *a string of whitelisted words that are below minWordLength but still desired for search*
 * **minScoreRequired**: *similar to options.threshold setting*
