@@ -1,2 +1,5 @@
+![hotline logo](hotline-logo.png)
 # read-the-docs
-A lightweight guidebook on quick lessons I've learned
+*a lightweight guidebook on quick lessons I've learned*
+
+## [How To: Fuzzy Search](fuse-js)
