@@ -58,7 +58,8 @@ wordsToSearchWith.forEach((word) => {
 });
 
 // log search results
-console.log(results);
+uniqueResults = _.uniq(results)
+console.log(uniqueResults);
 ```
 
 [back](../README.md)
