@@ -28,7 +28,7 @@ for path, subdirs, files in os.walk(selected_directory):
 # open and read found files
 for path in file_paths:
     with open(path, mode='rb') as fp:
-        file = fp.read()
+        file_bytes = fp.read()
 
 # print found file paths
 print(file_paths)
