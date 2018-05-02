@@ -37,7 +37,7 @@ var search = 'some search query';
 
 // filter search down to words specified by settings, return array of words to search with
 var searchArray = search.split(' ');
-var wordsToSearchWith = _.filter(wordsToSearchWith, (word) => { return word.length >= settings.minWordLength || settings.whiteList.includes(word) }); 
+var wordsToSearchWith = _.filter(searchArray, (word) => { return word.length >= settings.minWordLength || settings.whiteList.includes(word) }); 
 ```
 #### Search
 ```javascript
